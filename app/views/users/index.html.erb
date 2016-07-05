@@ -1,0 +1,14 @@
+<table class="pretty">
+  <tr>
+    <th><%= sortable "name" %></th>
+    <th><%= sortable "email" %></th>
+    <th><%= sortable "city" %></th>
+  </tr>
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.name %></td>
+      <td><%= user.email %></td>
+      <td><%= user.city %></td>
+    </tr>
+  <% end %>
+</table>
