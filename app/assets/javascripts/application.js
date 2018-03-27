@@ -14,6 +14,8 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+//= require highcharts
+//= require chartkick
 
 $(function() {
   $("#users th a, #users .pagination a").live("click", function() {

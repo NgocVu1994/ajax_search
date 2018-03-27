@@ -1,14 +1,25 @@
-<table class="pretty">
-  <tr>
-    <th><%= sortable "name" %></th>
-    <th><%= sortable "email" %></th>
-    <th><%= sortable "city" %></th>
-  </tr>
+<%= stylesheet_link_tag "//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css" %>
+<%= javascript_include_tag "//code.jquery.com/ui/1.11.2/jquery-ui.js" %>
+<%= form_tag users_path, method: :get, class: "navbar-form navbar-right", role: "search" do %>
+ <p>
+    <%= text_field_tag :search, params[:search], class: "form-control",
+        placeholder: "Search...", id: "search", autocomplete: "off" %>
+    <%= submit_tag "Search", name: nil, class: "btn btn-default" %>
+  </p>
+<% end %>
+<div class="row">
   <% @users.each do |user| %>
-    <tr>
-      <td><%= user.name %></td>
-      <td><%= user.email %></td>
-      <td><%= user.city %></td>
-    </tr>
+    <div class="col-sm-6 col-md-3">
+      <div class="thumbnail">
+        <%= user.email %>
+      </div>
+    </div>
   <% end %>
-</table>
+</div>
+
+<script>
+  $("#search").autocomplete({
+    source: "/users/autocomplete.json",
+    minLength: 2
+  });
+</script>

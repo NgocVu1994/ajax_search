@@ -26,6 +26,9 @@ gem "ckeditor_rails"
 gem 'cancancan', '~> 1.10'
 gem 'carrierwave'
 gem 'will_paginate', '~> 3.1.0'
+gem "searchkick"
+gem "chartkick"
+gem 'hightop'
 
 group :development, :test do
   gem "pry-rails"

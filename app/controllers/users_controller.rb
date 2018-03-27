@@ -1,16 +1,17 @@
 class UsersController < ApplicationController
-  helper_method :sort_column, :sort_direction
 
   def index
-    @users = User.order(sort_column + " " + sort_direction)
+    if params[:search].present?
+      @users = User.search(params[:search])
+    else
+      @users = User.all
+    end
   end
 
-  private
-  def sort_column
-    User.column_names.include?(params[:sort]) ? params[:sort] : "name"
-  end
-
-  def sort_direction
-    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+  def autocomplete
+    render json: User.search(params[:term], {
+      fields: ["email"],
+      limit: 10
+      }).map(&:email)
   end
 end
